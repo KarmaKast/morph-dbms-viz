@@ -61,7 +61,8 @@ class nodeViz:
             data={
                 'location': self.get_new_location() if location == None else location,
                 'color': (0, 255, 0),
-                'size': 1
+                'size': 1,
+                'selected': False
             }
         )
         self.viz_cluster.nodes[properties.node_ID.ID] = properties
@@ -95,11 +96,17 @@ class nodeViz:
             path, database_name, 'src_cluster')
         self.viz_cluster = nodeLib.files.load_cluster(
             path, database_name, 'viz_cluster')
-        pass
+        
+    def save_database(self, path, database_name):
+        nodeLib.files.write_cluster(
+            self.source_cluster, path, database_name)
+        nodeLib.files.write_cluster(
+            self.viz_cluster, path, database_name)
 
     def clear_database(self, mode='all'):
         nodeLib.cluster.clear_cluster(self.source_cluster)
         nodeLib.cluster.clear_cluster(self.viz_cluster)
+        
 
 
 """viz_instance1 = nodeViz()
