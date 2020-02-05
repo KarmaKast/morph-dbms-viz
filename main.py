@@ -96,7 +96,9 @@ class nodeViz:
             path, database_name, 'src_cluster')
         self.viz_cluster = nodeLib.files.load_cluster(
             path, database_name, 'viz_cluster')
-        
+        self.relations['properties of'] = self.viz_cluster.relations[list(
+            self.viz_cluster.relations.keys())[0]]
+
     def save_database(self, path, database_name):
         nodeLib.files.write_cluster(
             self.source_cluster, path, database_name)
@@ -106,7 +108,6 @@ class nodeViz:
     def clear_database(self, mode='all'):
         nodeLib.cluster.clear_cluster(self.source_cluster)
         nodeLib.cluster.clear_cluster(self.viz_cluster)
-        
 
 
 """viz_instance1 = nodeViz()
