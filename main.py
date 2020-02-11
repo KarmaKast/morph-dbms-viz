@@ -77,6 +77,36 @@ class nodeViz:
             if node_.node_ID.ID == node_ID:
                 node_.data.update(data)
 
+    def _get_viz_node(self, source_nodeID: str):
+        # todo: nodeLib should have a query solution to do this
+        for viz_node_ in self.viz_cluster.nodes.values():
+            found = False
+            for rel_claim in viz_node_.relation_claims:
+                if rel_claim.to_node.node_ID.ID == source_nodeID:
+                    found = True
+                    break
+            if found:
+                return viz_node_.node_ID.ID
+
+    def get_node_data(self, node_ID: str):
+        data = dict()
+        """
+        label: <label>
+        rel_claims: {
+            rel_ID: <rel_ID>
+            direction: <direction>
+            to_nodeID: <to_nodeID>
+        }
+        viz_props: <viz_props>
+        
+        """
+        data['label'] = self.source_cluster.nodes[node_ID].node_ID.node_label
+        # todo: get node from viz_cluster that has relation to node_ID
+        data['viz_props'] = self.viz_cluster.nodes[self._get_viz_node(
+            node_ID)].data
+
+        return data
+
     def change_property(self, node_ID, prop, value):
 
         # doing: query: find which node in viz_cluster has a relation to node with node_ID
