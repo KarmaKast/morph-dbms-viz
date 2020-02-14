@@ -121,6 +121,10 @@ class nodeViz:
         # doing: change property of the viz_node
         self.viz_cluster.nodes[viz_node_ID].data[prop] = value
 
+    def change_source(self, node_ID, attr, value):
+        if attr == 'label':
+            self.source_cluster.nodes[node_ID].node_ID.node_label = value
+
     def load_database(self, path, database_name):
         self.source_cluster = nodeLib.files.load_cluster(
             path, database_name, 'src_cluster')
