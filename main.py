@@ -18,7 +18,7 @@ class nodeViz:
 
     def get_new_location(self, curr_node=None):
         if len(self.viz_cluster.nodes.values()) == 0:
-            return (0, 0, 0)
+            return [0, 0, 0]
         else:
             # get a new location
 
@@ -29,8 +29,8 @@ class nodeViz:
                 for node_ in self.viz_cluster.nodes.values():
                     locations.append(node_.data['location'])
                 # todo: find max and min x,y and z
-                maxs = (0, 0, 0)
-                mins = (0, 0, 0)
+                maxs = [0, 0, 0]
+                mins = [0, 0, 0]
                 for loc in locations:
                     for i in range(3):
                         if loc[i] > maxs[i]:
