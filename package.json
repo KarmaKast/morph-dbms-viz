@@ -3,12 +3,16 @@
   "version": "0.0.1",
   "description": "a visualization wrapper for morph-dbms-core",
   "main": "./lib/index.js",
+  "types": "./lib/index.d.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsBuild": "tsc --outDir ./lib",
     "tsBuild:sourceMap": "tsc --sourceMap --outDir ./lib",
     "build": "rm -r -f ./lib && npm run lint && npm run tsBuild",
     "lint": "./node_modules/.bin/eslint --fix 'src/**/*.ts'"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "repository": {
     "type": "git",
