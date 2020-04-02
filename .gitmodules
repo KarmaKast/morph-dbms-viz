@@ -1,4 +1,0 @@
-[submodule "nodeLib"]
-	path = nodeLib
-	url = https://github.com/KarmaKast/nodeLib.git
-	branch = develop
