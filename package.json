@@ -1,5 +1,5 @@
 {
-  "name": "morph-dbms-viz",
+  "name": "@karmakast/morph-dbms-viz",
   "version": "0.0.1",
   "description": "a visualization wrapper for morph-dbms-core",
   "main": "./lib/index.js",
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/KarmaKast/nodeViz#readme",
   "devDependencies": {
-    "@types/node": "^13.9.8",
+    "@types/node": "^13.11.0",
     "@types/uuid": "^7.0.2",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
@@ -34,7 +34,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "morph-dbms-core": "^0.1.1",
+    "@karmakast/morph-dbms-core": "^0.2.0",
     "uuid": "^7.0.3"
   }
 }
