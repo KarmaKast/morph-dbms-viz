@@ -1,6 +1,7 @@
-import morphCore from "@karmakast/morph-dbms-core";
+import * as morphCore from "@karmakast/morph-dbms-core";
+export { morphCore };
 
-interface VizProp {
+export interface VizProp {
   location: { x: number; y: number; z: number };
   color: { h: number; s: number; l: number; a: number };
   size: number;
@@ -48,7 +49,7 @@ export class Viz {
 
       morphCore.Entity.claimRelation(
         propRelation,
-        morphCore.Direction.FromSelf,
+        morphCore.Direction.SelfToTarget,
         vizEntity,
         this.sourceCollection.Entities[entityID]
       );
