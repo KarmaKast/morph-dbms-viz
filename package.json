@@ -19,14 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KarmaKast/nodeViz.git"
+    "url": "git+https://github.com/KarmaKast/morph-dbms-viz.git"
   },
   "author": "Sree Chandan.R",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/KarmaKast/nodeViz/issues"
+    "url": "https://github.com/KarmaKast/morph-dbms-viz/issues"
   },
-  "homepage": "https://github.com/KarmaKast/nodeViz#readme",
+  "homepage": "https://github.com/KarmaKast/morph-dbms-viz#readme",
   "devDependencies": {
     "@types/node": "^13.11.0",
     "@types/uuid": "^7.0.2",

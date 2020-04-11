@@ -1,1 +1,1 @@
-# A wrapper library for nodeLib
+# A visualization wrapper library for morph-dbms-core
