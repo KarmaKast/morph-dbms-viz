@@ -85,6 +85,11 @@ export class Viz {
       morphCore.Files.writeCollection(this.vizCollection, databasePath);
     });
   }
+  clear(): void {
+    this.sourceCollection.Entities = new Map();
+    this.sourceCollection.Relations = new Map();
+    this.vizCollection.Entities = new Map();
+  }
 
   createEntity(vizProp?: Partial<VizProp>): morphCore.Structs.Entity["ID"] {
     const newEntity = morphCore.Entity.createNew();

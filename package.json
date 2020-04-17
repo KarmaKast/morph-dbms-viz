@@ -41,7 +41,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@karmakast/morph-dbms-core": "^0.2.1",
+    "@karmakast/morph-dbms-core": "^0.3.0",
     "uuid": "^7.0.3"
   }
 }
