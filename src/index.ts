@@ -97,6 +97,13 @@ export class Viz {
     this.initializeEntityViz(newEntity.ID, vizProp);
     return newEntity.ID;
   }
+  /**
+   * removes source entity and its corresponding viz entity
+   */
+  removeEntity(sourceEntityID: morphCore.Structs.Entity["ID"]): void {
+    this.vizCollection.Entities.delete(this.getVizEntity(sourceEntityID).ID);
+    this.sourceCollection.Entities.delete(sourceEntityID);
+  }
   getVizEntity(
     sourceEntityID: morphCore.Structs.Entity["ID"]
   ): morphCore.Structs.Entity {
