@@ -18,7 +18,14 @@ export class Viz {
     vizCollection?: morphCore.Structs.Collection
   ) {
     if (vizCollection) {
-      this._propRelation = Array.from(vizCollection.Relations.values())[0];
+      this._propRelation = Array.from(
+        new morphCore.ExperimentalQuery.QueryRunner.QueryCollection(
+          vizCollection,
+          vizCollection.ID
+        )
+          .usesRelation("properties of")
+          .collection.Relations.values()
+      )[0];
     } else {
       const relation = morphCore.createRelation("properties of");
       this._propRelation = relation;
@@ -100,9 +107,15 @@ export class Viz {
   /**
    * removes source entity and its corresponding viz entity
    */
-  removeEntity(sourceEntityID: morphCore.Structs.Entity["ID"]): void {
+  removeEntity(
+    sourceEntityID: morphCore.Structs.Entity["ID"]
+  ): morphCore.Structs.Entity["ID"][] {
     this.vizCollection.Entities.delete(this.getVizEntity(sourceEntityID).ID);
-    this.sourceCollection.Entities.delete(sourceEntityID);
+    //this.sourceCollection.Entities.delete(sourceEntityID);
+    return morphCore.Collection.dropEntity(
+      sourceEntityID,
+      this.sourceCollection
+    );
   }
   getVizEntity(
     sourceEntityID: morphCore.Structs.Entity["ID"]
@@ -115,13 +128,16 @@ export class Viz {
           this.vizCollection.ID
         )
           .hasRelationClaim(
-            Array.from(this.vizCollection.Relations.values())[0].ID,
+            this._propRelation.ID,
             morphCore.Direction.SelfToTarget,
             sourceEntity
           )
           .collection.Entities.values()
       )[0];
-    else throw new Error("No entity with ID : " + sourceEntityID);
+    else
+      throw new Error(
+        "No viz entity attached to source entity with ID : " + sourceEntityID
+      );
   }
 }
 
