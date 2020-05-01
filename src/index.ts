@@ -65,7 +65,7 @@ export class Viz {
             color:
               vizProp && vizProp.color
                 ? vizProp.color
-                : { h: 0, s: 0, l: 0, a: 0 },
+                : { h: 0, s: 0, l: 60, a: 1 },
             size: vizProp && vizProp.size ? vizProp.size : 1,
             selected: vizProp && vizProp.selected ? vizProp.selected : false,
           } as VizProp)
