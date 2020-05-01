@@ -1,6 +1,6 @@
 {
   "name": "@karmakast/morph-dbms-viz",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "a visualization wrapper for morph-dbms-core",
   "main": "./lib/index.js",
   "types": "./lib/index.d.js",
@@ -12,7 +12,10 @@
     "tsBuild": "tsc --outDir ./lib",
     "tsBuild:sourceMap": "tsc --sourceMap --outDir ./lib",
     "build": "rm -r -f ./lib && npm run lint && npm run tsBuild",
-    "lint": "./node_modules/.bin/eslint --fix 'src/**/*.ts'"
+    "lint": "./node_modules/.bin/eslint --fix 'src/**/*.ts'",
+    "versionBump:minor": "npm version minor --no-git-tag-version --force",
+    "versionBump:patch": "npm version patch --no-git-tag-version --force",
+    "publish": "npm publish"
   },
   "publishConfig": {
     "access": "public"
@@ -28,20 +31,20 @@
   },
   "homepage": "https://github.com/KarmaKast/morph-dbms-viz#readme",
   "devDependencies": {
-    "@types/node": "^13.11.1",
-    "@types/uuid": "^7.0.2",
-    "@typescript-eslint/eslint-plugin": "^2.28.0",
-    "@typescript-eslint/parser": "^2.28.0",
+    "@types/node": "^13.13.4",
+    "@types/uuid": "^7.0.3",
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "@typescript-eslint/parser": "^2.30.0",
     "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.1",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
-    "prettier": "^2.0.4",
+    "prettier": "^2.0.5",
     "ts-node-dev": "^1.0.0-pre.44",
-    "typedoc": "^0.17.4",
+    "typedoc": "^0.17.6",
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@karmakast/morph-dbms-core": "^0.3.0",
+    "@karmakast/morph-dbms-core": "^0.3.1",
     "uuid": "^7.0.3"
   }
 }

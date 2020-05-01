@@ -18,7 +18,14 @@ export class Viz {
     vizCollection?: morphCore.Structs.Collection
   ) {
     if (vizCollection) {
-      this._propRelation = Array.from(vizCollection.Relations.values())[0];
+      this._propRelation = Array.from(
+        new morphCore.ExperimentalQuery.QueryRunner.QueryCollection(
+          vizCollection,
+          vizCollection.ID
+        )
+          .usesRelation("properties of")
+          .collection.Relations.values()
+      )[0];
     } else {
       const relation = morphCore.createRelation("properties of");
       this._propRelation = relation;
@@ -58,7 +65,7 @@ export class Viz {
             color:
               vizProp && vizProp.color
                 ? vizProp.color
-                : { h: 0, s: 0, l: 0, a: 0 },
+                : { h: 0, s: 0, l: 60, a: 1 },
             size: vizProp && vizProp.size ? vizProp.size : 1,
             selected: vizProp && vizProp.selected ? vizProp.selected : false,
           } as VizProp)
@@ -97,6 +104,19 @@ export class Viz {
     this.initializeEntityViz(newEntity.ID, vizProp);
     return newEntity.ID;
   }
+  /**
+   * removes source entity and its corresponding viz entity
+   */
+  removeEntity(
+    sourceEntityID: morphCore.Structs.Entity["ID"]
+  ): morphCore.Structs.Entity["ID"][] {
+    this.vizCollection.Entities.delete(this.getVizEntity(sourceEntityID).ID);
+    //this.sourceCollection.Entities.delete(sourceEntityID);
+    return morphCore.Collection.dropEntity(
+      sourceEntityID,
+      this.sourceCollection
+    );
+  }
   getVizEntity(
     sourceEntityID: morphCore.Structs.Entity["ID"]
   ): morphCore.Structs.Entity {
@@ -108,13 +128,16 @@ export class Viz {
           this.vizCollection.ID
         )
           .hasRelationClaim(
-            Array.from(this.vizCollection.Relations.values())[0].ID,
+            this._propRelation.ID,
             morphCore.Direction.SelfToTarget,
             sourceEntity
           )
           .collection.Entities.values()
       )[0];
-    else throw new Error("No entity with ID : " + sourceEntityID);
+    else
+      throw new Error(
+        "No viz entity attached to source entity with ID : " + sourceEntityID
+      );
   }
 }
 
